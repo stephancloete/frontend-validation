@@ -9,49 +9,82 @@
 
 <body>
     <section>
-        <form action="info.php" method="post">
+        <form>
+
+            <legend>New Task Form</legend>
             
-            <legend>Form:</legend>
+            <div class="tooltip">
                 <p>
                     <label for="newTask">New Task:</label>
-                        <input type="text" placeholder="Required and must contain no html characters" id="newTask" name="newTask" required="required">
+                        <input type="text" placeholder="Required and must contain no html characters" id="newTask" name="newTask" required="required" />
+                        <span class="tooltiptext">Enter your new task here. </span>
                 </p>
+            </div>
 
-                <p id="error"></p>
+            <div>
+                <h6 id="error"></h6>
+            </div>
 
+            <div class="tooltip">
                 <p class="formfield">
                     <label for="taskDescription">Task Description:</label>
                         <textarea id="about" placeholder="Optional" name="user_about"></textarea>
+                        <span class="tooltiptext">Enter a description for your task here.</span>
                 </p>
+            </div>
 
+            <div class="tooltip">
                 <p class="textafter">
                     <label for="dueDate">Set Task due date:</label>
                         <input type="date" id="dueDate" name="dueDate" required="required">
+                        <span class="tooltiptext">Enter the due date for your task here.</span>
                 </p>
-                
+            </div>
+
+            <div class="tooltip">
                 <p class="textafter">
                     <label for="dueTime">Set Task due time:</label>
                         <input type="time" id="dueTime" name="dueTime" required="required">
+                        <span class="tooltiptext">Enter the time your task is due here.</span>
                 </p>
-
-                <input type="submit" value="Submit" onclick="myValidation()">
-
+            </div>
+            
+                <!--<input type="submit" onclick="myValidation()" value="Submit">-->
         </form>
+        <div class="tooltip">
+                <button id="submit" type="button" onclick="formValidation()">Add</button>
+                <span class="tooltiptext">Click here to add your new task.</span>
+            </div>
     </section>
+
+<div id="taskList">
+
+</div>
 
 <script>
 
-    function myValidation(){
+    function formValidation(){
 
-        let taskInput;
+        let taskInput = document.getElementById("newTask").value;
 
-        if(document.getElementByID("newTask").value.includes('<') || document.getElementByID("newTask").value.includes('>')){
+        if(taskInput.includes('<') || taskInput.includes('>')){
+            
             document.getElementById("error").innerHTML = "Please make sure your task contains no HTML characters";
         }else{
-            taskInput = document.getElementByID("newTask").value;
+            document.getElementById("error").innerHTML = "";
+            addToList();
         }
     }
 
+    function addToList(){
+        
+        const list = document.createElement("li");
+
+        list.innerHTML = document.createTextNode("Test");
+        document.getElementById("taskList").appendChild(list);
+    }
 </script>
 
 </body>
+
+<!---->

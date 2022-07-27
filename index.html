@@ -9,7 +9,7 @@
 
 <body>
     <section>
-        <form id="newTaskForm">
+        <form action = "index.html" id="newTaskForm" name="newTaskForm">
 
             <legend>New Task Form</legend>
             
@@ -51,10 +51,12 @@
             
                 <!--<input type="submit" onclick="formValidation()" value="Submit">-->
         </form>
+
         <div class="tooltip">
-                <button id="submit" type="submit" form ="newTaskForm" formmethod="post" onclick="formValidation()">Submit</button>
+                <button id="submit" type="button" form ="newTaskForm" formmethod="post" onclick="validate()">Submit</button>
                 <span class="tooltiptext">Click here to add your new task.</span>
-            </div>
+        </div>
+        
     </section>
 
 <ul id="taskList"></ul>
@@ -74,9 +76,7 @@
         }else{
             document.getElementById("error").innerHTML = "";
             addToList();
-        }
-        
-        
+        } 
     }
 
     function addToList(){
@@ -86,9 +86,31 @@
         const list = document.createElement("li");
         list.innerHTML = newTask;
         document.getElementById("taskList").appendChild(list);
+
+    }
+
+    function validate() {
+
+      if( document.newTaskForm.newTask.value == "" ) {
+         alert( "Please enter a new task!" );
+         document.newTaskForm.newTask.focus() ;
+         return false;
+      }
+
+      if( document.newTaskForm.dueDate.value == "" ) {
+         alert( "Please enter a due date!" );
+         document.newTaskForm.dueDate.focus() ;
+         return false;
+      }
+
+      if( document.newTaskForm.dueTime.value == "" ) {
+         alert( "Please enter a time due!" );
+         document.newTaskForm.dueTime.focus() ;
+         return false;
+      }
+
+      formValidation();
     }
 </script>
 
 </body>
-
-<!---->
